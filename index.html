@@ -46,11 +46,10 @@
         .middle-credit { font-size: 0.75em; color: #64748b; margin: -30px 0 30px 0; text-align: center; position: relative; z-index: 10;}
         .middle-credit b { color: #0284c7; }
 
-        /* --- STYLE DAUN GUGUR PINK BARU --- */
         .leaf {
-            position: fixed; /* Biar dia jatuh ngikutin layar */
+            position: fixed;
             top: -10%;
-            background-color: #ff91af; /* Pink lebih cerah/lucu */
+            background-color: #ff91af;
             border-radius: 100% 0 100% 0;
             pointer-events: none;
             z-index: 1;
@@ -58,18 +57,10 @@
         }
 
         @keyframes fall {
-            0% {
-                top: -10%;
-                transform: translateX(0) rotate(0deg);
-                opacity: 0;
-            }
+            0% { top: -10%; transform: translateX(0) rotate(0deg); opacity: 0; }
             10% { opacity: 0.8; }
             90% { opacity: 0.8; }
-            100% {
-                top: 110%;
-                transform: translateX(50px) rotate(720deg);
-                opacity: 0;
-            }
+            100% { top: 110%; transform: translateX(50px) rotate(720deg); opacity: 0; }
         }
     </style>
 </head>
@@ -117,8 +108,11 @@
             <p><strong>Waktu:</strong> 10:00 WIB - Selesai</p>
             <p><strong>Tempat:</strong> Kediaman Mempelai Wanita (Ima)</p>
             <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0;">
-            <p>Doa restu Anda adalah kado terindah bagi kami.</p>
+            
             <a href="Https://maps.app.goo.gl/8BVcYMNaKN5d7VqJ9?g_st=ac" target="_blank" style="color: #0284c7; text-decoration: none; font-weight: bold; display: block; border: 1px solid #0284c7; padding: 10px; border-radius: 10px; margin-bottom: 10px;">📍 Buka Google Maps</a>
+            
+            <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Tunangan+Alvin+%26+Ima&dates=20260426T030000Z/20260426T060000Z&details=Acara+Pertunangan+Alvin+dan+Ima.+Mohon+doa+restunya.&location=Kediaman+Mempelai+Wanita+(Ima)&sf=true&output=xml" target="_blank" style="color: #1e3a8a; text-decoration: none; font-weight: bold; display: block; border: 1px solid #1e3a8a; padding: 10px; border-radius: 10px; margin-bottom: 10px;">📅 Tambahkan ke Kalender</a>
+
             <a href="https://api.whatsapp.com/send?phone=6285723463132&text=Halo%20Ima,%20saya%20ingin%20konfirmasi%20kehadiran%20di%20acara%20tunangan%20kalian." 
                id="btn-wa" target="_blank" 
                style="color: white; background: #25d366; text-decoration: none; font-weight: bold; display: block; padding: 10px; border-radius: 10px; box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);">
@@ -143,20 +137,14 @@
             document.getElementById('sambutan').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // --- SCRIPT DAUN GUGUR PINK VERSI JATUH TERUS ---
         function createLeaf() {
             const leaf = document.createElement('div');
             leaf.classList.add('leaf');
-            
-            // Ukuran lebih gede (antara 10px - 22px)
             const size = Math.random() * 12 + 10 + 'px';
-            leaf.style.width = size;
-            leaf.style.height = size;
-            
+            leaf.style.width = size; leaf.style.height = size;
             leaf.style.left = Math.random() * 100 + 'vw';
             leaf.style.animationDuration = Math.random() * 3 + 5 + 's'; 
             leaf.style.opacity = Math.random() * 0.4 + 0.5;
-
             document.body.appendChild(leaf);
             setTimeout(() => { leaf.remove(); }, 8000);
         }
