@@ -9,11 +9,10 @@
         html { scroll-behavior: smooth; }
         body {
             margin: 0; padding: 0; font-family: 'Quicksand', sans-serif;
-            /* Background gradient biru muda */
             background: linear-gradient(to bottom, #e0f2fe 0%, #bae6fd 100%);
             display: flex; flex-direction: column; align-items: center;
             min-height: 100vh; color: #1e3a8a; overflow-x: hidden;
-            position: relative; /* Penting buat posisi daun */
+            position: relative;
         }
         .header-credit {
             font-size: 0.65em; color: #64748b; padding: 10px 0; text-align: center; width: 100%; letter-spacing: 1px;
@@ -22,11 +21,10 @@
         .header-credit span { font-weight: bold; color: #0284c7; }
         .container {
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            min-height: 90vh; width: 100%;
-            position: relative; z-index: 5;
+            min-height: 90vh; width: 100%; position: relative; z-index: 5;
         }
         .card, .section-card {
-            background: rgba(255, 255, 255, 0.9); /* Sedikit transparan biar daun kelihatan di belakang */
+            background: rgba(255, 255, 255, 0.9);
             padding: 30px; border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             text-align: center; max-width: 80%; width: 400px;
@@ -48,31 +46,28 @@
         .middle-credit { font-size: 0.75em; color: #64748b; margin: -30px 0 30px 0; text-align: center; position: relative; z-index: 10;}
         .middle-credit b { color: #0284c7; }
 
-        /* Style Daun Gugur */
+        /* --- STYLE DAUN GUGUR PINK BARU --- */
         .leaf {
-            position: absolute;
-            background-color: #fca5a5; /* Warna pink daun */
-            border-radius: 100% 0 100% 0; /* Bentuk daun simpel */
-            opacity: 0.7;
-            pointer-events: none; /* Biar nggak bisa diklik */
-            z-index: 1; /* Daun di belakang kartu tapi di depan background */
+            position: fixed; /* Biar dia jatuh ngikutin layar */
+            top: -10%;
+            background-color: #ff91af; /* Pink lebih cerah/lucu */
+            border-radius: 100% 0 100% 0;
+            pointer-events: none;
+            z-index: 1;
             animation: fall linear infinite;
         }
 
-        /* Animasi Daun Jatuh */
         @keyframes fall {
             0% {
-                transform: translateY(-10vh) translateX(0) rotate(0deg);
+                top: -10%;
+                transform: translateX(0) rotate(0deg);
                 opacity: 0;
             }
-            10% {
-                opacity: 0.7;
-            }
-            90% {
-                opacity: 0.7;
-            }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
             100% {
-                transform: translateY(110vh) translateX(20px) rotate(360deg);
+                top: 110%;
+                transform: translateX(50px) rotate(720deg);
                 opacity: 0;
             }
         }
@@ -124,7 +119,6 @@
             <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0;">
             <p>Doa restu Anda adalah kado terindah bagi kami.</p>
             <a href="Https://maps.app.goo.gl/8BVcYMNaKN5d7VqJ9?g_st=ac" target="_blank" style="color: #0284c7; text-decoration: none; font-weight: bold; display: block; border: 1px solid #0284c7; padding: 10px; border-radius: 10px; margin-bottom: 10px;">📍 Buka Google Maps</a>
-            
             <a href="https://api.whatsapp.com/send?phone=6285723463132&text=Halo%20Ima,%20saya%20ingin%20konfirmasi%20kehadiran%20di%20acara%20tunangan%20kalian." 
                id="btn-wa" target="_blank" 
                style="color: white; background: #25d366; text-decoration: none; font-weight: bold; display: block; padding: 10px; border-radius: 10px; box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);">
@@ -139,47 +133,34 @@
         if (nama) {
             const namaTamu = nama.replace(/\+/g, ' ');
             document.getElementById('nama-tamu').innerText = namaTamu;
-            
-            // Ganti link WA otomatis biar ada nama tamu
             const waLink = `https://api.whatsapp.com/send?phone=6285723463132&text=Halo%20Ima,%20saya%20${namaTamu}%20ingin%20konfirmasi%20kehadiran%20di%20acara%20tunangan%20kalian.`;
             document.getElementById('btn-wa').href = waLink;
         }
 
         function mulai() {
             var audio = document.getElementById('lagu');
-            audio.play().catch(e => console.log("Audio diblokir browser"));
+            audio.play().catch(e => console.log("Audio diblokir"));
             document.getElementById('sambutan').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // --- SCRIPT DAUN GUGUR PINK ---
+        // --- SCRIPT DAUN GUGUR PINK VERSI JATUH TERUS ---
         function createLeaf() {
             const leaf = document.createElement('div');
             leaf.classList.add('leaf');
             
-            // Random ukuran daun
-            const size = Math.random() * 10 + 5 + 'px';
+            // Ukuran lebih gede (antara 10px - 22px)
+            const size = Math.random() * 12 + 10 + 'px';
             leaf.style.width = size;
             leaf.style.height = size;
             
-            // Random posisi horizontal
             leaf.style.left = Math.random() * 100 + 'vw';
-            
-            // Random durasi jatuh (biar nggak barengan)
-            leaf.style.animationDuration = Math.random() * 3 + 4 + 's'; // Antara 4-7 detik
-            
-            // Random transparansi
-            leaf.style.opacity = Math.random() * 0.5 + 0.3; // Antara 0.3-0.8
+            leaf.style.animationDuration = Math.random() * 3 + 5 + 's'; 
+            leaf.style.opacity = Math.random() * 0.4 + 0.5;
 
             document.body.appendChild(leaf);
-
-            // Hapus daun setelah jatuh biar nggak ngebatin memori
-            setTimeout(() => {
-                leaf.remove();
-            }, 7000); // Harus sama atau lebih lama dari durasi jatuh terlama
+            setTimeout(() => { leaf.remove(); }, 8000);
         }
-
-        // Bikin daun baru setiap 200 milidetik (makin kecil makin banyak)
-        setInterval(createLeaf, 250);
+        setInterval(createLeaf, 300);
     </script>
 </body>
 </html>
