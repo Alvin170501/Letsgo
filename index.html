@@ -29,6 +29,7 @@
             display: inline-block; margin-top: 20px; padding: 12px 25px;
             background: #0284c7; color: white; text-decoration: none;
             border-radius: 50px; font-weight: bold; box-shadow: 0 4px 15px rgba(2, 132, 199, 0.3);
+            cursor: pointer; border: none;
         }
         #detail {
             margin: 50px 0; padding: 30px; background: white; border-radius: 20px;
@@ -39,6 +40,10 @@
 </head>
 <body>
 
+    <audio id="lagu" loop>
+        <source src="https://files.catbox.moe/p9o13y.mp3" type="audio/mpeg">
+    </audio>
+
     <div class="container">
         <div class="card">
             <p style="letter-spacing: 2px; text-transform: uppercase; font-size: 0.8em;">The Engagement of</p>
@@ -47,7 +52,7 @@
             <p>Kepada Yth:</p>
             <span class="tamu" id="nama-tamu">Nama Tamu</span>
             <p>Kami mengundang Anda untuk hadir di acara tunangan kami.</p>
-            <a href="#detail" class="btn">Buka Undangan</a>
+            <button onclick="mulai()" class="btn">Buka Undangan</button>
         </div>
     </div>
 
@@ -62,10 +67,18 @@
     </div>
 
     <script>
+        // Ambil Nama Tamu dari Link
         const urlParams = new URLSearchParams(window.location.search);
         const nama = urlParams.get('to');
         if (nama) {
             document.getElementById('nama-tamu').innerText = nama.replace(/\+/g, ' ');
+        }
+
+        // Fungsi buat putar lagu dan scroll ke bawah
+        function mulai() {
+            var audio = document.getElementById('lagu');
+            audio.play(); // Putar lagu
+            window.location.hash = "detail"; // Scroll ke detail
         }
     </script>
 </body>
