@@ -70,3 +70,39 @@
     </script>
 </body>
 </html>
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="card">
+            <p>The Wedding of</p>
+            <h1>Alvin & Ima</h1>
+            <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+            <p>Kepada Yth:</p>
+            <span class="tamu" id="nama-tamu">Nama Tamu</span>
+            <p>Kami mengundang Anda untuk hadir di acara kami.</p>
+            <a href="#detail" class="btn">Buka Undangan</a>
+        </div>
+    </div>
+
+    <div id="detail">
+        <h2 style="color: #d4af37; font-family: 'Dancing Script', cursive;">Detail Acara Tunangan</h2>
+        <p><strong>Hari/Tanggal:</strong> Minggu, 26 April 2026</p>
+        <p><strong>Waktu:</strong> 09:00 WIB - Selesai</p>
+        <p><strong>Tempat:</strong> Kediaman Mempelai Wanita (Ima)</p>
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+        <p>Merupakan suatu kehormatan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir.</p>
+        <a href="https://www.google.com/maps" target="_blank" style="color: #d4af37; text-decoration: none; font-weight: bold;">📍 Buka Google Maps</a>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const nama = urlParams.get('to');
+        if (nama) {
+            document.getElementById('nama-tamu').innerText = nama.replace(/\+/g, ' ');
+        }
+    </script>
+</body>
+</html>
