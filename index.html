@@ -14,15 +14,9 @@
             min-height: 100vh; color: #1e3a8a; overflow-x: hidden;
         }
         .header-credit {
-            font-size: 0.65em;
-            color: #64748b;
-            padding: 10px 0;
-            text-align: center;
-            width: 100%;
-            letter-spacing: 1px;
+            font-size: 0.65em; color: #64748b; padding: 10px 0; text-align: center; width: 100%; letter-spacing: 1px;
         }
         .header-credit span { font-weight: bold; color: #0284c7; }
-
         .container {
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             min-height: 90vh; width: 100%;
@@ -45,12 +39,7 @@
         }
         .text-content { font-size: 0.9em; line-height: 1.6; color: #475569; }
         .name-highlight { font-weight: bold; color: #1e3a8a; font-size: 1.1em; }
-        .middle-credit {
-            font-size: 0.75em;
-            color: #64748b;
-            margin: -30px 0 30px 0;
-            text-align: center;
-        }
+        .middle-credit { font-size: 0.75em; color: #64748b; margin: -30px 0 30px 0; text-align: center; }
         .middle-credit b { color: #0284c7; }
     </style>
 </head>
@@ -99,7 +88,13 @@
             <p><strong>Tempat:</strong> Kediaman Mempelai Wanita (Ima)</p>
             <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0;">
             <p>Doa restu Anda adalah kado terindah bagi kami.</p>
-            <a href="Https://maps.app.goo.gl/8BVcYMNaKN5d7VqJ9?g_st=ac" target="_blank" style="color: #0284c7; text-decoration: none; font-weight: bold; display: block; margin-top: 15px; border: 1px solid #0284c7; padding: 10px; border-radius: 10px;">📍 Buka Google Maps</a>
+            <a href="Https://maps.app.goo.gl/8BVcYMNaKN5d7VqJ9?g_st=ac" target="_blank" style="color: #0284c7; text-decoration: none; font-weight: bold; display: block; border: 1px solid #0284c7; padding: 10px; border-radius: 10px; margin-bottom: 10px;">📍 Buka Google Maps</a>
+            
+            <a href="https://api.whatsapp.com/send?phone=6285723463132&text=Halo%20Ima,%20saya%20ingin%20konfirmasi%20kehadiran%20di%20acara%20tunangan%20kalian." 
+               id="btn-wa" target="_blank" 
+               style="color: white; background: #25d366; text-decoration: none; font-weight: bold; display: block; padding: 10px; border-radius: 10px; box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);">
+               Confirm via WhatsApp (Ima)
+            </a>
         </div>
     </div>
 
@@ -107,12 +102,17 @@
         const urlParams = new URLSearchParams(window.location.search);
         const nama = urlParams.get('to');
         if (nama) {
-            document.getElementById('nama-tamu').innerText = nama.replace(/\+/g, ' ');
+            const namaTamu = nama.replace(/\+/g, ' ');
+            document.getElementById('nama-tamu').innerText = namaTamu;
+            
+            // Ganti link WA otomatis biar ada nama tamu
+            const waLink = `https://api.whatsapp.com/send?phone=6285723463132&text=Halo%20Ima,%20saya%20${namaTamu}%20ingin%20konfirmasi%20kehadiran%20di%20acara%20tunangan%20kalian.`;
+            document.getElementById('btn-wa').href = waLink;
         }
 
         function mulai() {
             var audio = document.getElementById('lagu');
-            audio.play().catch(e => console.log("Audio play blocked"));
+            audio.play().catch(e => console.log("Audio diblokir browser"));
             document.getElementById('sambutan').scrollIntoView({ behavior: 'smooth' });
         }
     </script>
