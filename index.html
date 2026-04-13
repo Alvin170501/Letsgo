@@ -17,36 +17,32 @@
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             height: 100vh; width: 100%;
         }
-        .card {
+        .card, .section-card {
             background: white; padding: 30px; border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             text-align: center; max-width: 80%; width: 400px;
-            border: 2px solid #0284c7;
+            border: 2px solid #0284c7; margin-bottom: 50px;
         }
-        h1 { font-family: 'Dancing Script', cursive; color: #0284c7; font-size: 2.5em; margin: 10px 0; }
+        h1, h2 { font-family: 'Dancing Script', cursive; color: #0284c7; margin: 10px 0; }
+        h1 { font-size: 2.5em; }
+        h2 { font-size: 2em; }
         .tamu { font-weight: bold; font-size: 1.2em; color: #334155; margin: 15px 0; display: block; }
         .btn {
             display: inline-block; margin-top: 20px; padding: 12px 25px;
             background: #0284c7; color: white; text-decoration: none;
             border-radius: 50px; font-weight: bold; box-shadow: 0 4px 15px rgba(2, 132, 199, 0.3);
-            cursor: pointer; border: none;
+            cursor: pointer; border: none; font-size: 1em;
         }
-        #detail {
-            margin: 50px 0; padding: 30px; background: white; border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center;
-            max-width: 80%; width: 400px; border: 1px solid #e2e8f0;
-        }
+        .text-content { font-size: 0.9em; line-height: 1.6; color: #475569; }
+        .name-highlight { font-weight: bold; color: #1e3a8a; font-size: 1.1em; }
+        #sambutan { margin-top: 50px; }
     </style>
 </head>
 <body>
 
     <audio id="lagu" preload="auto" loop>
-    <source src="https://cdn.discordapp.com/attachments/1493090724718055436/1493092111644491877/ssstik.io_1776051227049.mp3?ex=69ddb5e3&is=69dc6463&hm=7f7b62ffbb2338c04690548ac31e23e0adab98d019e5096bf9d108a8cd4dc4e2&" type="audio/mpeg">
-</audio>
-
-
-
-
+        <source src="https://cdn.discordapp.com/attachments/1493090724718055436/1493092111644491877/ssstik.io_1776051227049.mp3?ex=69ddb5e3&is=69dc6463&hm=7f7b62ffbb2338c04690548ac31e23e0adab98d019e5096bf9d108a8cd4dc4e2&" type="audio/mpeg">
+    </audio>
 
     <div class="container">
         <div class="card">
@@ -54,46 +50,54 @@
             <h1>Alvin & Ima</h1>
             <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0;">
             <p>Kepada Yth:</p>
-            <span class="tamu" id="nama-tamu">Mvi & Hana</span>
+            <span class="tamu" id="nama-tamu">Nama Tamu</span>
             <p>Kami mengundang Anda untuk hadir di acara tunangan kami.</p>
             <button onclick="mulai()" class="btn">Buka Undangan</button>
-
         </div>
     </div>
 
-    <div id="detail">
-        <h2 style="color: #0284c7; font-family: 'Dancing Script', cursive; font-size: 2em;">Detail Acara</h2>
-        <p><strong>Hari/Tanggal:</strong> Minggu, 26 April 2026</p>
-        <p><strong>Waktu:</strong> 10:00 WIB - Selesai</p>
-        <p><strong>Tempat:</strong> Kediaman Mempelai Wanita (Ima)</p>
-        <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0;">
-        <p>Doa restu Anda adalah kado terindah bagi kami.</p>
-        <a href="Https://maps.app.goo.gl/8BVcYMNaKN5d7VqJ9?g_st=ac" target="_blank" style="color: #0284c7; text-decoration: none; font-weight: bold;">📍 Buka Google Maps</a>
+    <div id="sambutan" class="section-card">
+        <h2>Assalamu’alaikum Wr. Wb.</h2>
+        <div class="text-content">
+            <p>Maha Suci Allah yang telah menciptakan mahluk-Nya berpasang-pasangan. Ya Allah, perkenankanlah kami merangkaikan kasih sayang yang Kau ciptakan dalam ikatan pertunangan.</p>
+            <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0;">
+            
+            <p><span class="name-highlight">Alvin</span><br>
+            Putra dari Bapak Zen Abdul Aziz & Ibu Suryani Andriani</p>
+            
+            <p style="font-family: 'Dancing Script'; font-size: 1.8em; margin: 10px 0; color: #0284c7;">dengan</p>
+            
+            <p><span class="name-highlight">Ima</span><br>
+            Putri dari Bapak Ayo & Ibu Nani</p>
+        </div>
     </div>
 
-<script>
-    // Ambil nama dari link
-    const urlParams = new URLSearchParams(window.location.search);
-    const nama = urlParams.get('to');
-    if (nama) {
-        document.getElementById('nama-tamu').innerText = nama.replace(/\+/g, ' ');
-    }
+    <div id="detail" class="section-card">
+        <h2>Waktu & Lokasi</h2>
+        <div class="text-content">
+            <p><strong>Hari/Tanggal:</strong> Minggu, 26 April 2026</p>
+            <p><strong>Waktu:</strong> 10:00 WIB - Selesai</p>
+            <p><strong>Tempat:</strong> Kediaman Mempelai Wanita (Ima)</p>
+            <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0;">
+            <p>Doa restu Anda adalah kado terindah bagi kami.</p>
+            <a href="Https://maps.app.goo.gl/8BVcYMNaKN5d7VqJ9?g_st=ac" target="_blank" style="color: #0284c7; text-decoration: none; font-weight: bold; display: block; margin-top: 15px; border: 1px solid #0284c7; padding: 10px; border-radius: 10px;">📍 Buka Google Maps</a>
+        </div>
+    </div>
 
-    // Fungsi sakti buat nyalain lagu
-    function mulai() {
-        var audio = document.getElementById('lagu');
-        
-        // Coba putar audio
-        audio.play().then(() => {
-            console.log("Lagu diputar");
-        }).catch((error) => {
-            console.log("Gagal putar otomatis, tapi tetep scroll");
-        });
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const nama = urlParams.get('to');
+        if (nama) {
+            document.getElementById('nama-tamu').innerText = nama.replace(/\+/g, ' ');
+        }
 
-        // Scroll ke detail
-        document.getElementById('detail').scrollIntoView({ behavior: 'smooth' });
-    }
-</script>
-
+        function mulai() {
+            var audio = document.getElementById('lagu');
+            audio.play().catch(function(error) {
+                console.log("Autoplay dicegah browser, tapi musik akan jalan setelah interaksi.");
+            });
+            document.getElementById('sambutan').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
 </body>
 </html>
