@@ -9,53 +9,49 @@
         html { scroll-behavior: smooth; }
         body {
             margin: 0; padding: 0; font-family: 'Quicksand', sans-serif;
-            background: linear-gradient(to bottom, #e0f2fe 0%, #bae6fd 100%);
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
             display: flex; flex-direction: column; align-items: center;
             min-height: 100vh; color: #1e3a8a; overflow-x: hidden;
-            position: relative;
         }
-        .header-credit {
-            font-size: 0.65em; color: #64748b; padding: 10px 0; text-align: center; width: 100%; letter-spacing: 1px;
-            position: relative; z-index: 10;
-        }
+        .header-credit { font-size: 0.65em; color: #64748b; padding: 10px 0; text-align: center; width: 100%; z-index: 100; }
         .header-credit span { font-weight: bold; color: #0284c7; }
-        .container {
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            min-height: 90vh; width: 100%; position: relative; z-index: 5;
-        }
+
+        .container { min-height: 90vh; display: flex; align-items: center; justify-content: center; width: 100%; z-index: 5; }
+        
+        /* EFEK KACA (GLASSMORPHISM) */
         .card, .section-card {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 30px; border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            text-align: center; max-width: 80%; width: 400px;
-            border: 2px solid #0284c7; margin-bottom: 50px;
-            position: relative; z-index: 5;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px); /* Efek Blur */
+            -webkit-backdrop-filter: blur(10px);
+            padding: 30px; border-radius: 25px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center; max-width: 80%; width: 380px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            margin-bottom: 50px; z-index: 5;
+            transition: transform 0.3s ease;
         }
+
+        /* ANIMASI MUNCUL */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
         h1, h2 { font-family: 'Dancing Script', cursive; color: #0284c7; margin: 10px 0; }
-        h1 { font-size: 2.5em; }
-        h2 { font-size: 2em; }
-        .tamu { font-weight: bold; font-size: 1.2em; color: #334155; margin: 15px 0; display: block; }
+        h1 { font-size: 2.8em; text-shadow: 2px 2px 4px rgba(0,0,0,0.05); }
+        
+        .tamu { font-weight: bold; font-size: 1.3em; color: #1e40af; margin: 15px 0; display: block; }
         .btn {
-            display: inline-block; margin-top: 20px; padding: 12px 25px;
+            display: inline-block; margin-top: 15px; padding: 12px 28px;
             background: #0284c7; color: white; text-decoration: none;
-            border-radius: 50px; font-weight: bold; box-shadow: 0 4px 15px rgba(2, 132, 199, 0.3);
-            cursor: pointer; border: none; font-size: 1em;
-        }
-        .text-content { font-size: 0.9em; line-height: 1.6; color: #475569; }
-        .name-highlight { font-weight: bold; color: #1e3a8a; font-size: 1.1em; }
-        .middle-credit { font-size: 0.75em; color: #64748b; margin: -30px 0 30px 0; text-align: center; position: relative; z-index: 10;}
-        .middle-credit b { color: #0284c7; }
-
-        .leaf {
-            position: fixed;
-            top: -10%;
-            background-color: #ff91af;
-            border-radius: 100% 0 100% 0;
-            pointer-events: none;
-            z-index: 1;
-            animation: fall linear infinite;
+            border-radius: 50px; font-weight: bold; border: none; cursor: pointer;
+            box-shadow: 0 4px 15px rgba(2, 132, 199, 0.3);
         }
 
+        /* COUNTDOWN STYLE */
+        #countdown { display: flex; justify-content: center; gap: 10px; margin: 20px 0; font-weight: bold; }
+        .time-box { background: #0284c7; color: white; padding: 10px; border-radius: 10px; min-width: 45px; }
+        .time-box span { display: block; font-size: 0.6em; text-transform: uppercase; }
+
+        .leaf { position: fixed; top: -10%; background-color: #ff91af; border-radius: 100% 0 100% 0; pointer-events: none; z-index: 1; animation: fall linear infinite; }
         @keyframes fall {
             0% { top: -10%; transform: translateX(0) rotate(0deg); opacity: 0; }
             10% { opacity: 0.8; }
@@ -66,9 +62,7 @@
 </head>
 <body>
 
-    <div class="header-credit">
-        PEMBUAT: <span>M. ALVIAN</span> | IG: <span>@ALVIANNNM</span>
-    </div>
+    <div class="header-credit">PEMBUAT: <span>M. ALVIAN</span> | IG: <span>@ALVIANNNM</span></div>
 
     <audio id="lagu" preload="auto" loop>
         <source src="https://cdn.discordapp.com/attachments/1493090724718055436/1493092111644491877/ssstik.io_1776051227049.mp3?ex=69ddb5e3&is=69dc6463&hm=7f7b62ffbb2338c04690548ac31e23e0adab98d019e5096bf9d108a8cd4dc4e2&" type="audio/mpeg">
@@ -76,50 +70,47 @@
 
     <div class="container">
         <div class="card">
-            <p style="letter-spacing: 2px; text-transform: uppercase; font-size: 0.8em;">The Engagement of</p>
+            <p style="letter-spacing: 2px; text-transform: uppercase; font-size: 0.7em;">The Engagement of</p>
             <h1>Alvin & Ima</h1>
             <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0;">
             <p>Kepada Yth:</p>
             <span class="tamu" id="nama-tamu">Nama Tamu</span>
-            <p>Kami mengundang Anda untuk hadir di acara tunangan kami.</p>
             <button onclick="mulai()" class="btn">Buka Undangan</button>
         </div>
     </div>
 
-    <div id="sambutan" class="section-card">
+    <div id="sambutan" class="section-card reveal">
         <h2>Assalamu’alaikum Wr. Wb.</h2>
         <div class="text-content">
-            <p>Maha Suci Allah yang telah menciptakan mahluk-Nya berpasang-pasangan. Ya Allah, perkenankanlah kami merangkaikan kasih sayang yang Kau ciptakan dalam ikatan pertunangan.</p>
+            <p>Maha Suci Allah yang telah menciptakan mahluk-Nya berpasang-pasangan. Perkenankanlah kami merangkaikan kasih sayang dalam ikatan pertunangan.</p>
             <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0;">
-            <p><span class="name-highlight">Alvin</span><br>Putra dari Bapak Zen Abdul Aziz & Ibu Suryani Andriani</p>
+            <p><span class="name-highlight">Alvin</span><br>Putra Bapak Zen Abdul Aziz & Ibu Suryani Andriani</p>
             <p style="font-family: 'Dancing Script'; font-size: 1.8em; margin: 10px 0; color: #0284c7;">dengan</p>
-            <p><span class="name-highlight">Ima</span><br>Putri dari Bapak Ayo & Ibu Nani</p>
+            <p><span class="name-highlight">Ima</span><br>Putri Bapak Ayo & Ibu Nani</p>
         </div>
     </div>
 
-    <div class="middle-credit">
-        Pembuat: <b>M. Alvian</b> | Instagram: <b>@alviannnm</b>
+    <div class="section-card reveal">
+        <h2>Menuju Hari Bahagia</h2>
+        <div id="countdown">
+            <div class="time-box"><div id="days">00</div><span>Hari</span></div>
+            <div class="time-box"><div id="hours">00</div><span>Jam</span></div>
+            <div class="time-box"><div id="mins">00</div><span>Menit</span></div>
+        </div>
     </div>
 
-    <div id="detail" class="section-card">
+    <div id="detail" class="section-card reveal">
         <h2>Waktu & Lokasi</h2>
         <div class="text-content">
-            <p><strong>Hari/Tanggal:</strong> Minggu, 26 April 2026</p>
-            <p><strong>Waktu:</strong> 10:00 WIB - Selesai</p>
-            <p><strong>Tempat:</strong> Kediaman Mempelai Wanita (Ima)</p>
-            <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0;">
-            
-            <a href="Https://maps.app.goo.gl/8BVcYMNaKN5d7VqJ9?g_st=ac" target="_blank" style="color: #0284c7; text-decoration: none; font-weight: bold; display: block; border: 1px solid #0284c7; padding: 10px; border-radius: 10px; margin-bottom: 10px;">📍 Buka Google Maps</a>
-            
-            <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Tunangan+Alvin+%26+Ima&dates=20260426T030000Z/20260426T060000Z&details=Acara+Pertunangan+Alvin+dan+Ima.+Mohon+doa+restunya.&location=Kediaman+Mempelai+Wanita+(Ima)&sf=true&output=xml" target="_blank" style="color: #1e3a8a; text-decoration: none; font-weight: bold; display: block; border: 1px solid #1e3a8a; padding: 10px; border-radius: 10px; margin-bottom: 10px;">📅 Tambahkan ke Kalender</a>
-
-            <a href="https://api.whatsapp.com/send?phone=6285723463132&text=Halo%20Ima,%20saya%20ingin%20konfirmasi%20kehadiran%20di%20acara%20tunangan%20kalian." 
-               id="btn-wa" target="_blank" 
-               style="color: white; background: #25d366; text-decoration: none; font-weight: bold; display: block; padding: 10px; border-radius: 10px; box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);">
-               Confirm via WhatsApp (Ima)
-            </a>
+            <p><strong>Minggu, 26 April 2026</strong><br>10:00 WIB - Selesai</p>
+            <p>Kediaman Mempelai Wanita (Ima)</p>
+            <a href="Https://maps.app.goo.gl/8BVcYMNaKN5d7VqJ9?g_st=ac" target="_blank" style="color: #0284c7; text-decoration: none; font-weight: bold; display: block; border: 1px solid #0284c7; padding: 10px; border-radius: 10px; margin: 10px 0;">📍 Google Maps</a>
+            <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Tunangan+Alvin+%26+Ima&dates=20260426T030000Z/20260426T060000Z&details=Acara+Pertunangan+Alvin+dan+Ima.&location=Kediaman+Ima&sf=true&output=xml" target="_blank" style="color: #1e3a8a; text-decoration: none; font-weight: bold; display: block; border: 1px solid #1e3a8a; padding: 10px; border-radius: 10px; margin-bottom: 10px;">📅 Simpan Jadwal</a>
+            <a href="https://api.whatsapp.com/send?phone=6285723463132" id="btn-wa" target="_blank" style="color: white; background: #25d366; text-decoration: none; font-weight: bold; display: block; padding: 10px; border-radius: 10px;">Confirm via WhatsApp</a>
         </div>
     </div>
+
+    <div style="font-size: 0.7em; color: #64748b; margin-bottom: 30px;">Pembuat: <b>M. Alvian</b> | IG: <b>@alviannnm</b></div>
 
     <script>
         const urlParams = new URLSearchParams(window.location.search);
@@ -127,28 +118,42 @@
         if (nama) {
             const namaTamu = nama.replace(/\+/g, ' ');
             document.getElementById('nama-tamu').innerText = namaTamu;
-            const waLink = `https://api.whatsapp.com/send?phone=6285723463132&text=Halo%20Ima,%20saya%20${namaTamu}%20ingin%20konfirmasi%20kehadiran%20di%20acara%20tunangan%20kalian.`;
-            document.getElementById('btn-wa').href = waLink;
+            document.getElementById('btn-wa').href = `https://api.whatsapp.com/send?phone=6285723463132&text=Halo%20Ima,%20saya%20${namaTamu}%20ingin%20konfirmasi%20kehadiran.`;
         }
 
         function mulai() {
-            var audio = document.getElementById('lagu');
-            audio.play().catch(e => console.log("Audio diblokir"));
+            document.getElementById('lagu').play();
             document.getElementById('sambutan').scrollIntoView({ behavior: 'smooth' });
         }
 
-        function createLeaf() {
+        // COUNTDOWN SCRIPT
+        const targetDate = new Date("April 26, 2026 10:00:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+            document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+            document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById('mins').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        }, 1000);
+
+        // REVEAL ON SCROLL
+        window.addEventListener('scroll', () => {
+            document.querySelectorAll('.reveal').forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('active');
+            });
+        });
+
+        // LEAF SCRIPT
+        setInterval(() => {
             const leaf = document.createElement('div');
             leaf.classList.add('leaf');
-            const size = Math.random() * 12 + 10 + 'px';
+            const size = Math.random() * 15 + 10 + 'px';
             leaf.style.width = size; leaf.style.height = size;
             leaf.style.left = Math.random() * 100 + 'vw';
-            leaf.style.animationDuration = Math.random() * 3 + 5 + 's'; 
-            leaf.style.opacity = Math.random() * 0.4 + 0.5;
+            leaf.style.animationDuration = Math.random() * 3 + 5 + 's';
             document.body.appendChild(leaf);
-            setTimeout(() => { leaf.remove(); }, 8000);
-        }
-        setInterval(createLeaf, 300);
+            setTimeout(() => leaf.remove(), 8000);
+        }, 300);
     </script>
 </body>
 </html>
