@@ -40,9 +40,10 @@
 </head>
 <body>
 
-    <audio id="lagu" loop>
-        <source src="https://files.catbox.moe/p9o13y.mp3" type="audio/mpeg">
-    </audio>
+    <audio id="lagu" preload="auto" loop>
+    <source src="https://files.catbox.moe/p9o13y.mp3" type="audio/mpeg">
+</audio>
+
 
     <div class="container">
         <div class="card">
@@ -53,6 +54,7 @@
             <span class="tamu" id="nama-tamu">Nama Tamu</span>
             <p>Kami mengundang Anda untuk hadir di acara tunangan kami.</p>
             <button onclick="mulai()" class="btn">Buka Undangan</button>
+
         </div>
     </div>
 
@@ -66,20 +68,29 @@
         <a href="Https://maps.app.goo.gl/8BVcYMNaKN5d7VqJ9?g_st=ac" target="_blank" style="color: #0284c7; text-decoration: none; font-weight: bold;">📍 Buka Google Maps</a>
     </div>
 
-    <script>
-        // Ambil Nama Tamu dari Link
-        const urlParams = new URLSearchParams(window.location.search);
-        const nama = urlParams.get('to');
-        if (nama) {
-            document.getElementById('nama-tamu').innerText = nama.replace(/\+/g, ' ');
-        }
+<script>
+    // Ambil nama dari link
+    const urlParams = new URLSearchParams(window.location.search);
+    const nama = urlParams.get('to');
+    if (nama) {
+        document.getElementById('nama-tamu').innerText = nama.replace(/\+/g, ' ');
+    }
 
-        // Fungsi buat putar lagu dan scroll ke bawah
-        function mulai() {
-            var audio = document.getElementById('lagu');
-            audio.play(); // Putar lagu
-            window.location.hash = "detail"; // Scroll ke detail
-        }
-    </script>
+    // Fungsi sakti buat nyalain lagu
+    function mulai() {
+        var audio = document.getElementById('lagu');
+        
+        // Coba putar audio
+        audio.play().then(() => {
+            console.log("Lagu diputar");
+        }).catch((error) => {
+            console.log("Gagal putar otomatis, tapi tetep scroll");
+        });
+
+        // Scroll ke detail
+        document.getElementById('detail').scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+
 </body>
 </html>
