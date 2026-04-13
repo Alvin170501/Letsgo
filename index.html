@@ -13,9 +13,20 @@
             display: flex; flex-direction: column; align-items: center;
             min-height: 100vh; color: #1e3a8a; overflow-x: hidden;
         }
+        /* Style buat info pembuat di paling atas */
+        .header-credit {
+            font-size: 0.65em;
+            color: #64748b;
+            padding: 10px 0;
+            text-align: center;
+            width: 100%;
+            letter-spacing: 1px;
+        }
+        .header-credit span { font-weight: bold; color: #0284c7; }
+
         .container {
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            height: 100vh; width: 100%;
+            min-height: 90vh; width: 100%;
         }
         .card, .section-card {
             background: white; padding: 30px; border-radius: 20px;
@@ -36,17 +47,13 @@
         .text-content { font-size: 0.9em; line-height: 1.6; color: #475569; }
         .name-highlight { font-weight: bold; color: #1e3a8a; font-size: 1.1em; }
         #sambutan { margin-top: 50px; }
-        /* Style buat tulisan pembuat */
-        .footer {
-            font-size: 0.7em;
-            color: #64748b;
-            margin-bottom: 20px;
-            text-align: center;
-            opacity: 0.8;
-        }
     </style>
 </head>
 <body>
+
+    <div class="header-credit">
+        PEMBUAT: <span>M. ALVIAN</span> | IG: <span>@ALVIANNNM</span>
+    </div>
 
     <audio id="lagu" preload="auto" loop>
         <source src="https://cdn.discordapp.com/attachments/1493090724718055436/1493092111644491877/ssstik.io_1776051227049.mp3?ex=69ddb5e3&is=69dc6463&hm=7f7b62ffbb2338c04690548ac31e23e0adab98d019e5096bf9d108a8cd4dc4e2&" type="audio/mpeg">
@@ -90,10 +97,6 @@
             <p>Doa restu Anda adalah kado terindah bagi kami.</p>
             <a href="Https://maps.app.goo.gl/8BVcYMNaKN5d7VqJ9?g_st=ac" target="_blank" style="color: #0284c7; text-decoration: none; font-weight: bold; display: block; margin-top: 15px; border: 1px solid #0284c7; padding: 10px; border-radius: 10px;">📍 Buka Google Maps</a>
         </div>
-    </div>
-
-    <div class="footer">
-        Pembuat: ig: alviannnnm
     </div>
 
     <script>
